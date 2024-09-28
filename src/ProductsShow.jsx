@@ -1,4 +1,4 @@
-export function ProductsShow({ product, onUpdate, onDestroy }) {
+export function ProductsShow({ product, onUpdate, onDestroy, onDestroy }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -19,6 +19,7 @@ export function ProductsShow({ product, onUpdate, onDestroy }) {
       <div>
         <h3>Product information</h3>
         {/* <p>Name: {product.name}</p> */}
+        <p>ID: {product.id}</p>
         <p>ID: {product.id}</p>
         {/* <p>URL: {product.url}</p> */}
         <p>Price: {product.price}</p>
@@ -48,6 +49,7 @@ export function ProductsShow({ product, onUpdate, onDestroy }) {
         <div>
           <button onClick={() => onDestroy(product.id)}>Delete</button>
         </div>
+        <button onClick={() => onDestroy(product.id)}>Delete</button>
       </div>
     </div>
   );

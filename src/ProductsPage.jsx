@@ -80,6 +80,14 @@ export function ProductsPage() {
     });
   };
 
+  const handleDestroy = (id) => {
+    console.log("handleDestroy", id);
+    axios.delete(`http://localhost:3000/products/${id}.json`).then(() => {
+      setProducts(products.filter((product) => product.id !== id));
+      handleClose();
+    });
+  };
+
   useEffect(handleIndex, []);
 
   return (
