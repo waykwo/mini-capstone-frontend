@@ -27,7 +27,7 @@ export function ProductsNew({ onCreate }) {
           Description: <input name="description" type="text" />
         </div>
         <div>
-          Supplier ID: <input name="supplier_id" type="number" />
+          Supplier ID: <input name="supplier_id" type="number" required />
         </div>
         {/* <div>
           Image: <input name="images" type="text" />

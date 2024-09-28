@@ -54,6 +54,31 @@ export function ProductsPage() {
       handleClose();
     });
   };
+  
+  // const handleUpdateImage = (id, params, successCallback) => {
+  //   console.log("handleUpdate", params);
+  //   axios.patch(`http://localhost:3000/images/${id}.json`, params).then((response) => {
+  //     setProducts(
+  //       products.map((product) => {
+  //         if (product.id === response.data.id) {
+  //           return response.data;
+  //         } else {
+  //           return product;
+  //         };
+  //       })
+  //     );
+  //     successCallback();
+  //     handleClose();
+  //   });
+  // };
+
+  const handleDestroy = (id) => {
+    console.log("handleDestroy", id);
+    axios.delete(`http://localhost:3000/products/${id}.json`).then(() => {
+      setProducts(products.filter((product) => product.id !== id));
+      handleClose();
+    });
+  };
 
   useEffect(handleIndex, []);
 
@@ -63,7 +88,7 @@ export function ProductsPage() {
       <ProductsIndex products={products} onShow={handleShow} />
       <Modal show={isProductsShowVisible} onClose={handleClose}>
         <h1>{currentProduct.name}</h1>
-        <ProductsShow product={currentProduct} onUpdate={handleUpdate} />
+        <ProductsShow product={currentProduct} onUpdate={handleUpdate} onDestroy={handleDestroy} />
       </Modal>
     </main>
   );
