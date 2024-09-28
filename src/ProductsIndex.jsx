@@ -10,7 +10,7 @@ export function ProductsIndex({ products, onShow }) {
           <img src={product.images[0] && product.images[0].url} />
           <button onClick={() => onShow(product)}>More info</button>
         </div>
-      ))};
+      ))}
     </div>
   );
 }
