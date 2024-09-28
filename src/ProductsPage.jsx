@@ -12,7 +12,7 @@ export function ProductsPage() {
 
   const handleIndex = () => {
     console.log("handleIndex");
-    axios.get("http://localhost:3000/products.json").then(response => {
+    axios.get("http://localhost:3000/products.json").then((response) => {
       // console.log(response.data);
       setProducts(response.data);
     });
@@ -21,7 +21,7 @@ export function ProductsPage() {
   const handleCreate = (params, successCallback) => {
   // const handleCreate = (params) => {
     console.log("handleCreate", params);
-    axios.post("http://localhost:3000/products.json", params).then(response => {
+    axios.post("http://localhost:3000/products.json", params).then((response) => {
       setProducts([...products, response.data]);
       successCallback();
     });
@@ -38,6 +38,23 @@ export function ProductsPage() {
     setIsProductsShowVisible(false);
   };
 
+  const handleUpdate = (id, params, successCallback) => {
+    console.log("handleUpdate", params);
+    axios.patch(`http://localhost:3000/products/${id}.json`, params).then((response) => {
+      setProducts(
+        products.map((product) => {
+          if (product.id === response.data.id) {
+            return response.data;
+          } else {
+            return product;
+          };
+        })
+      );
+      successCallback();
+      handleClose();
+    });
+  };
+
   useEffect(handleIndex, []);
 
   return (
@@ -45,8 +62,8 @@ export function ProductsPage() {
       <ProductsNew onCreate={handleCreate}/>
       <ProductsIndex products={products} onShow={handleShow} />
       <Modal show={isProductsShowVisible} onClose={handleClose}>
-        <h1>Test</h1>
-        <ProductsShow product={currentProduct} />
+        <h1>{currentProduct.name}</h1>
+        <ProductsShow product={currentProduct} onUpdate={handleUpdate} />
       </Modal>
     </main>
   );
