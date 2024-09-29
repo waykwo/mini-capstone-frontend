@@ -1,21 +1,62 @@
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { Header } from "./Header";
 import { ProductsPage } from "./ProductsPage";
+import { ProductsNewPage } from "./ProductsNewPage";
+import { ProductsIndexPage } from "./ProductsIndexPage";
 import { Footer } from "./Footer";
 import { SignupPage } from "./SignupPage";
 import { LoginPage } from "./LoginPage";
-import { LogoutLink } from "./LogoutLink";
+import axios from "axios";
+
+
+const router = createBrowserRouter([
+  {
+    element: (
+      <div>
+        <Header />
+        <Outlet />
+        <Footer />
+      </div>
+    ),
+    children: [
+      {
+        path: "/",
+        element: <ProductsPage />,
+      },
+      {
+        path: "/new",
+        element: <ProductsNewPage />,
+      },
+      {
+        path: "/signup",
+        element: <SignupPage />,
+      },
+      {
+        path: "/login",
+        element: <LoginPage />,
+      },
+      {
+        path: "/products",
+        element: <ProductsIndexPage />,
+        loader: () => axios.get("http://localhost:3000/products.json").then((response) => response.data),
+      },
+    ],
+  },
+]);
 
 function App() {
-  return (
-    <div>
-      <Header />
-      <LogoutLink />
-      <SignupPage />
-      <LoginPage />
-      <ProductsPage />
-      <Footer />
-    </div>
-  )
+  return <RouterProvider router={router} />;
+
+  // return (
+  //   <div>
+  //     <Header />
+  //     <LogoutLink />
+  //     <SignupPage />
+  //     <LoginPage />
+  //     <ProductsPage />
+  //     <Footer />
+  //   </div>
+  // )
 }
 
 export default App;

@@ -1,4 +1,4 @@
-export function ProductsShow({ product, onUpdate, onDestroy, onDestroy }) {
+export function ProductsShow({ product, onUpdate, onDestroy }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();

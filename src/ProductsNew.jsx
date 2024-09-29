@@ -3,7 +3,7 @@ export function ProductsNew({ onCreate }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const params = new FormData(event.target);
-    onCreate(params, () => event.target.reset());
+    onCreate(params, () => event.target.reset()); // this is not needed if you put ProductsNew on a separate page
     // console.log(event);
     // console.log(event.target[0].value);
     // console.log(event.target[1].value);

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { ProductsIndex } from "./ProductsIndex";
-import { ProductsNew } from "./ProductsNew";
+// import { ProductsNew } from "./ProductsNew";
 import { ProductsShow } from "./ProductsShow";
 import { Modal } from "./Modal";
 
@@ -18,14 +18,15 @@ export function ProductsPage() {
     });
   };
 
-  const handleCreate = (params, successCallback) => {
-  // const handleCreate = (params) => {
-    console.log("handleCreate", params);
-    axios.post("http://localhost:3000/products.json", params).then((response) => {
-      setProducts([...products, response.data]);
-      successCallback();
-    });
-  }
+  // This is used if you don't put the ProductsNew on a separate page
+  // const handleCreate = (params, successCallback) => {
+  // // const handleCreate = (params) => {
+  //   console.log("handleCreate", params);
+  //   axios.post("http://localhost:3000/products.json", params).then((response) => {
+  //     setProducts([...products, response.data]);
+  //     successCallback();
+  //   });
+  // }
 
   const handleShow = (product) => {
     console.log("handleShow", product);
@@ -80,19 +81,19 @@ export function ProductsPage() {
     });
   };
 
-  const handleDestroy = (id) => {
-    console.log("handleDestroy", id);
-    axios.delete(`http://localhost:3000/products/${id}.json`).then(() => {
-      setProducts(products.filter((product) => product.id !== id));
-      handleClose();
-    });
-  };
+  // const handleDestroy = (id) => {
+  //   console.log("handleDestroy", id);
+  //   axios.delete(`http://localhost:3000/products/${id}.json`).then(() => {
+  //     setProducts(products.filter((product) => product.id !== id));
+  //     handleClose();
+  //   });
+  // };
 
   useEffect(handleIndex, []);
 
   return (
     <main>
-      <ProductsNew onCreate={handleCreate}/>
+      {/* <ProductsNew onCreate={handleCreate}/> */}
       <ProductsIndex products={products} onShow={handleShow} />
       <Modal show={isProductsShowVisible} onClose={handleClose}>
         <h1>{currentProduct.name}</h1>
