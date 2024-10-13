@@ -6,6 +6,19 @@ img {
   max-width: 500px;
 }
 
+label {
+  float: left;
+  width: 10em;
+}
+
+.input_text {
+  clear: left;
+  display: flex;
+  align-items: center;
+}
+
+
+
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

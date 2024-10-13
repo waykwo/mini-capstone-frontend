@@ -1,9 +1,16 @@
 // This is "My Cart"
 import { useLoaderData, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export function MyCart() {
   const cartedProducts = useLoaderData();
-  console.log(cartedProducts);
+  
+  const checkout = () => {
+    console.log("Checkout");
+    axios.post("http://localhost:3000/orders.json").then(response => {
+      console.log(response.data);
+    })
+  }
 
   return (
     <div>
@@ -16,6 +23,7 @@ export function MyCart() {
           <hr />
         </div>
       ))}
+      <button onClick={checkout}>Checkout</button>
     </div>
   )
 }
