@@ -7,7 +7,7 @@ export function ProductsIndexPage() {
   const navigate = useNavigate();
 
   const handleShow = (product) => {
-    console.log("handleShow", photo);
+    console.log("handleShow", product);
     navigate(`/products/${product.id}`);
   };
 

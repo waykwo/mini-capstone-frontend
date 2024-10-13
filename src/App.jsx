@@ -1,12 +1,15 @@
+import axios from "axios";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+
 import { Header } from "./Header";
 import { ProductsPage } from "./ProductsPage";
 import { ProductsNewPage } from "./ProductsNewPage";
 import { ProductsIndexPage } from "./ProductsIndexPage";
+import { ProductsShowPage } from "./ProductsShowPage";
+import { MyCart } from "./CartedProductsIndex";
 import { Footer } from "./Footer";
 import { SignupPage } from "./SignupPage";
 import { LoginPage } from "./LoginPage";
-import axios from "axios";
 
 
 const router = createBrowserRouter([
@@ -39,6 +42,16 @@ const router = createBrowserRouter([
         path: "/products",
         element: <ProductsIndexPage />,
         loader: () => axios.get("http://localhost:3000/products.json").then((response) => response.data),
+      },
+      {
+        path: "/products/:id",
+        element: <ProductsShowPage />,
+        loader: ({ params }) => axios.get("http://localhost:3000/products/${params.id}.json").then((response) => response.data),
+      },
+      {
+        path: "/my_cart",
+        element: <MyCart />,
+        loader: () => axios.get("http://localhost:3000/carted-products.json").then((response) => response.data),
       },
     ],
   },
