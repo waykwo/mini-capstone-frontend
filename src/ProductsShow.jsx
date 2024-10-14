@@ -1,18 +1,5 @@
-export function ProductsShow({ product, onUpdate, onDestroy }) {
+export function ProductsShow({ product, onUpdate }) {
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const params = new FormData(event.target);
-    console.log(event.target)
-    onUpdate(product.id, params, () => event.target.reset());
-  }
-  
-  // const handleSubmitImage = (event) => {
-  //   event.preventDefault();
-  //   const params = new FormData(event.target);
-  //   console.log(event.target)
-  //   onUpdate(image.id, params, () => event.target.reset());
-  // }
   
   return (
     <div>
@@ -25,15 +12,33 @@ export function ProductsShow({ product, onUpdate, onDestroy }) {
         <p>Description: {product.description}</p>
         <p>Supplier ID: {product.supplier_id}</p>
       </div>
-      <div>
+    </div>
+  );
+}
+
+// const handleSubmit = (event) => {
+//   event.preventDefault();
+//   const params = new FormData(event.target);
+//   console.log(event.target)
+//   onUpdate(product.id, params, () => event.target.reset());
+// }
+
+      {/* // const handleSubmitImage = (event) => {
+      //   event.preventDefault();
+      //   const params = new FormData(event.target);
+      //   console.log(event.target)
+      //   onUpdate(image.id, params, () => event.target.reset());
+      // } */}
+
+      {/* <div>
         <h3>Edit</h3>
         <form onSubmit={handleSubmit}>
           <div>
             Name: <input defaultValue={product.name} name="name" type="text" />
           </div>
-          {/* <div>
+          <div>
             URL: <input defaultValue={product.url} name="url" type="text" />
-          </div> */}
+          </div>
           <div>
             Price: <input defaultValue={product.Price} name="price" type="text" />
           </div>
@@ -49,6 +54,4 @@ export function ProductsShow({ product, onUpdate, onDestroy }) {
           <button onClick={() => onDestroy(product.id)}>Delete</button>
         </div>
       </div>
-    </div>
-  );
-}
+    </div> */}

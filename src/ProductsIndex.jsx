@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 
-export function ProductsIndex({ products, onShow }) {
+export function ProductsIndex({ products, onShow, onShowAddToCart }) {
   const [searchTerm, setSearchTerm] = useState("")
   return (
     <div>
@@ -17,6 +17,8 @@ export function ProductsIndex({ products, onShow }) {
           <img src={product.images[0] && product.images[0].url} />
           <div>
             <button onClick={() => onShow(product)}>More info</button>
+            <button onClick={() => onShowAddToCart(product)}>Add To Cart</button>
+            <button onClick={() => onShowEditProduct(product)}>Edit Product</button>
           </div>
         </div>
       ))}

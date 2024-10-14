@@ -1,5 +1,5 @@
 // This is "My Cart"
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import axios from "axios";
 
 export function MyCart() {
