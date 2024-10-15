@@ -55,40 +55,40 @@ export function ProductsPage() {
     })
   }
   
-    const handleDestroy = (id) => {
-      console.log("handleDestroy", id);
-      axios.delete(`http://localhost:3000/products/${id}.json`).then(() => {
-        setProducts(products.filter((product) => product.id !== id));
-        handleClose();
-      });
-    };
-    
-    useEffect(handleIndex, []);
-    
-    return (
-      <main>
-      {/* <ProductsNew onCreate={handleCreate}/> */}
-      <ProductsIndex
-        products={products}
-        onShow={handleShow}
-        onShowAddToCart={handleShowAddToCart}
+  const handleDestroy = (id) => {
+    console.log("handleDestroy", id);
+    axios.delete(`http://localhost:3000/products/${id}.json`).then(() => {
+      setProducts(products.filter((product) => product.id !== id));
+      handleClose();
+    });
+  };
+  
+  useEffect(handleIndex, []);
+  
+  return (
+    <main>
+    {/* <ProductsNew onCreate={handleCreate}/> */}
+    <ProductsIndex
+      products={products}
+      onShow={handleShow}
+      onShowAddToCart={handleShowAddToCart}
+      />
+    <Modal show={isProductsShowVisible} onClose={handleClose}>
+      <h1>{currentProduct.name}</h1>
+      <ProductsShow
+        product={currentProduct}
+        // onAddtoCart={handleAddToCart}
+        onUpdate={handleUpdate}
+        onDestroy={handleDestroy}
         />
-      <Modal show={isProductsShowVisible} onClose={handleClose}>
-        <h1>{currentProduct.name}</h1>
-        <ProductsShow
-          product={currentProduct}
-          // onAddtoCart={handleAddToCart}
-          onUpdate={handleUpdate}
-          onDestroy={handleDestroy}
-          />
-      </Modal>
-      <Modal show={isAddToCartShowVisible} onClose={handleClose}>
-        <h1>{currentProduct.name}</h1>
-        <CartedProductsNew
-          product={currentProduct}
-          onAddtoCart={handleShowAddToCart}
-          />
-      </Modal>
+    </Modal>
+    <Modal show={isAddToCartShowVisible} onClose={handleClose}>
+      <h1>{currentProduct.name}</h1>
+      <CartedProductsNew
+        product={currentProduct}
+        onAddtoCart={handleShowAddToCart}
+        />
+    </Modal>
     </main>
   );
 }

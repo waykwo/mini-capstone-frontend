@@ -1,4 +1,4 @@
-export function ProductsShow({ product, onUpdate }) {
+export function ProductsShow({ product }) {
 
   
   return (
